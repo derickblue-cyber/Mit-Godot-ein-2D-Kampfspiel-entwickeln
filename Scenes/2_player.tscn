@@ -1,0 +1,242 @@
+[gd_scene load_steps=19 format=3 uid="uid://2v71ipxq2vkh"]
+
+[ext_resource type="Script" uid="uid://4icx0tji800e" path="res://Scripts/2_player.gd" id="1_afemh"]
+[ext_resource type="Texture2D" uid="uid://eth22r4e62ra" path="res://Assets/Char_5.png" id="1_t0ywj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afemh"]
+atlas = ExtResource("1_t0ywj")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vx4l"]
+atlas = ExtResource("1_t0ywj")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ecj3"]
+atlas = ExtResource("1_t0ywj")
+region = Rect2(320, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6g33d"]
+atlas = ExtResource("1_t0ywj")
+region = Rect2(384, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8ro2"]
+atlas = ExtResource("1_t0ywj")
+region = Rect2(960, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8jdy"]
+atlas = ExtResource("1_t0ywj")
+region = Rect2(832, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xkrs"]
+atlas = ExtResource("1_t0ywj")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6g33d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afemh")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vx4l")
+}],
+"loop": true,
+"name": &"backwards",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ecj3")
+}],
+"loop": true,
+"name": &"damage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6g33d")
+}],
+"loop": true,
+"name": &"doge",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8ro2")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8jdy")
+}],
+"loop": true,
+"name": &"punch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xkrs")
+}],
+"loop": true,
+"name": &"run animation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a8jdy"]
+size = Vector2(11.5, 42.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_afemh"]
+size = Vector2(20, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6g33d"]
+size = Vector2(10, 9.5)
+
+[sub_resource type="Animation" id="Animation_0xkrs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_a8jdy"]
+resource_name = "damage_p2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"damage", &"Idle"]
+}
+
+[sub_resource type="Animation" id="Animation_6g33d"]
+resource_name = "doge_p2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"doge", &"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_afemh"]
+resource_name = "punch_p2"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"punch", &"Idle"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1vx4l"]
+_data = {
+&"RESET": SubResource("Animation_0xkrs"),
+&"damage_p2": SubResource("Animation_a8jdy"),
+&"doge_p2": SubResource("Animation_6g33d"),
+&"punch_p2": SubResource("Animation_afemh")
+}
+
+[node name="2_Player" type="CharacterBody2D"]
+script = ExtResource("1_afemh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6g33d")
+animation = &"Idle"
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.25, -1)
+shape = SubResource("RectangleShape2D_a8jdy")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-1, -2)
+shape = SubResource("RectangleShape2D_afemh")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-17, 0)
+shape = SubResource("RectangleShape2D_6g33d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Hitbox"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_1vx4l")
+}
+autoplay = "punch_p2"
+
+[node name="cooldown_doge" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="cooldown_doge" to="." method="_on_timer_timeout"]
